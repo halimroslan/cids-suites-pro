@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIDS Suites Pro - Pembantu Maya Guru</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="icon" href="assets/CIDS-NEW-GEN ICON.png" type="image/png">
+</head>
+<body>
+    <div class="bg-ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/CIDS-NEW-GEN ICON.png" alt="CIDS Logo" class="logo-img">
+                <div class="logo-text-group">
+                    <span class="logo-text-main">CIDS</span>
+                    <span class="logo-text-sub highlight-gold">SUITES PRO</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#utama">Utama</a></li>
+                <li><a href="#ciri-ciri">Ciri-ciri</a></li>
+                <li><a href="#keselamatan">Keselamatan</a></li>
+                <li><a href="#muat-turun" class="btn-primary" style="padding: 0.5rem 1rem;">Muat Turun</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero reveal">
+        <div class="hero-content">
+            <h1 class="antique-title">
+                Ubah Pengkeranian Kepada <br>
+                <span class="highlight-gold">Automasi AI</span>
+            </h1>
+            <p class="hero-desc">
+                Masa anda terlampau berharga. CIDS Suites Pro membantu anda mengautomasikan RPT, Jadual Waktu dan RPH, 
+                supaya anda boleh kembali fokus kepada apa yang paling penting &mdash; mendidik anak bangsa.
+            </p>
+            <div class="hero-actions" style="margin-top: 2rem; margin-bottom: 3rem;">
+                <a href="#muat-turun" class="btn-primary large">Muat Turun</a>
+                <a href="#ciri-ciri" class="btn-secondary large">Lihat Kelebihan</a>
+            </div>
+            
+            <div class="interactive-mockup reveal" id="appMockup">
+                <img src="assets/screenshots/main_menu.png" id="mockupImage" class="mockup-img" alt="CIDS Suites Pro Interactive UI">
+                
+                <!-- Transparent overlays for sidebar buttons -->
+                <div class="mockup-sidebar-overlay">
+                    <!-- Logo (Main Menu) -->
+                    <button class="mockup-btn" data-target="assets/screenshots/main_menu.png" style="top: 10%; height: 18%;" title="Menu Utama"></button>
+                    <!-- RPT Assist -->
+                    <button class="mockup-btn" data-target="assets/screenshots/rpt_assist.png" style="top: 42%; height: 6.5%;" title="RPT Assist"></button>
+                    <!-- Schedule Assist -->
+                    <button class="mockup-btn" data-target="assets/screenshots/schedule_assist.png" style="top: 50.5%; height: 6.5%;" title="Schedule Assist"></button>
+                    <!-- RPH Assist -->
+                    <button class="mockup-btn" data-target="assets/screenshots/rph_assist.png" style="top: 59%; height: 6.5%;" title="RPH Assist"></button>
+                    <!-- RPH Deleter -->
+                    <button class="mockup-btn" data-target="assets/screenshots/rph_deleter.png" style="top: 67%; height: 6.5%;" title="RPH Deleter"></button>
+                    <!-- Setting -->
+                    <button class="mockup-btn" data-target="assets/screenshots/main_menu.png" style="top: 75%; height: 6.5%;" title="Tetapan"></button>
+                </div>
+                
+                <!-- Transparent overlays for main center cards -->
+                <div class="mockup-center-overlay" id="mockupCenterOverlay">
+                    <!-- RPT Assist -->
+                    <button class="mockup-btn center-card-btn" data-target="assets/screenshots/rpt_assist.png" style="left: 28%; top: 41%; width: 11%; height: 33%;" title="RPT Assist"></button>
+                    <!-- Schedule Assist -->
+                    <button class="mockup-btn center-card-btn" data-target="assets/screenshots/schedule_assist.png" style="left: 40.5%; top: 41%; width: 11%; height: 33%;" title="Schedule Assist"></button>
+                    <!-- RPH Assist -->
+                    <button class="mockup-btn center-card-btn" data-target="assets/screenshots/rph_assist.png" style="left: 53.5%; top: 41%; width: 11%; height: 33%;" title="RPH Assist"></button>
+                    <!-- RPH Deleter -->
+                    <button class="mockup-btn center-card-btn" data-target="assets/screenshots/rph_deleter.png" style="left: 66%; top: 41%; width: 11%; height: 33%;" title="RPH Deleter"></button>
+                    <!-- Setting -->
+                    <button class="mockup-btn center-card-btn" data-target="assets/screenshots/main_menu.png" style="left: 78.5%; top: 41%; width: 11%; height: 33%;" title="Tetapan"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="ciri-ciri" class="features">
+        <h2 class="section-title reveal">Uruskan Semua Dengan <span>Satu Klik</span></h2>
+        <p class="section-desc reveal">Tangkap layar modul-modul hebat di dalam aplikasi yang akan memudahkan urusan harian anda.</p>
+
+        <div class="feature-grid">
+                <div class="feature-card glass-card reveal">
+                    <div class="feature-header">
+                        <img src="assets/RPT AI ASSIST ICON.png" alt="RPT Assist Icon" class="feature-icon-img">
+                        <h3>RPT Assist</h3>
+                    </div>
+                    <img src="assets/RPT AI ASSIST BANNER.png" alt="RPT Assist Banner" class="feature-banner">
+                    <p>Jana Rancangan Pengajaran Tahunan secara automatik berdasarkan kurikulum, standard, dan data sekolah.</p>
+                    <div class="screenshot-container">
+                        <img src="assets/screenshots/rpt_assist.png" alt="RPT Assist" class="screenshot-img">
+                    </div>
+                </div>
+                
+                <div class="feature-card glass-card reveal delay-1">
+                    <div class="feature-header">
+                        <img src="assets/SCHEDULE AI ASSIST ICON.png" alt="Schedule Assist Icon" class="feature-icon-img">
+                        <h3>Schedule Assist</h3>
+                    </div>
+                    <img src="assets/SCHEDULE AI ASSIST BANNER.png" alt="Schedule Assist Banner" class="feature-banner">
+                    <p>Muat turun dan automasikan pengekstrakan jadual waktu ke dalam sistem CIDS dengan pantas.</p>
+                    <div class="screenshot-container">
+                        <img src="assets/screenshots/schedule_assist.png" alt="Schedule Assist" class="screenshot-img">
+                    </div>
+                </div>
+                
+                <div class="feature-card glass-card reveal delay-2">
+                    <div class="feature-header">
+                        <img src="assets/RPH AI ASSIST ICON.png" alt="RPH Assist Icon" class="feature-icon-img">
+                        <h3>RPH Assist</h3>
+                    </div>
+                    <img src="assets/RPH AI ASSIST BANNER.png" alt="RPH Assist Banner" class="feature-banner">
+                    <p>Jana Rancangan Pengajaran Harian (RPH) berkualiti tinggi mengikut objektif pembelajaran dan amalan pedagogi terbaik.</p>
+                    <div class="screenshot-container">
+                        <img src="assets/screenshots/rph_assist.png" alt="RPH Assist" class="screenshot-img">
+                    </div>
+                </div>
+                
+                <div class="feature-card glass-card reveal delay-3">
+                    <div class="feature-header">
+                        <img src="assets/RPH DELETER ICON.png" alt="RPH Deleter Icon" class="feature-icon-img">
+                        <h3>RPH Deleter</h3>
+                    </div>
+                    <img src="assets/RPH DELETER BANNER.png" alt="RPH Deleter Banner" class="feature-banner">
+                    <p>Padam RPH yang tidak diperlukan dengan selamat dan kekalkan pengurusan rekod fail yang teratur.</p>
+                    <div class="screenshot-container">
+                        <img src="assets/screenshots/rph_deleter.png" alt="RPH Deleter" class="screenshot-img">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="feature-card glass-card reveal delay-1" style="grid-column: 1 / -1; max-width: 600px; margin: 3rem auto 0;">
+                <div class="feature-header" style="justify-content: center;">
+                    <img src="assets/SETTING ICON.png" alt="Settings Icon" class="feature-icon-img">
+                    <h3>Tetapan Lanjutan</h3>
+                </div>
+                <img src="assets/SETTING BANNER.png" alt="Settings Banner" class="feature-banner">
+                <p style="text-align: center;">Kawal kelajuan automasi dan selaraskan pelbagai fungsi ikut kesesuaian dan kelajuan peranti anda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical / Security FAQ Section -->
+    <section id="keselamatan" class="security-section glass reveal">
+        <div class="security-container">
+            <h2 class="antique-title">Keselamatan & Ketelusan <span class="highlight-gold">Terjamin</span></h2>
+            
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <div class="faq-icon">🌐</div>
+                    <div class="faq-content">
+                        <h3>Bertindak Seperti Pelayar Web Biasa (Browser)</h3>
+                        <p>Aplikasi ini menggunakan teknologi Electron dan Playwright yang pada dasarnya bertindak sebagai pelayar web Google Chrome yang dikawal secara automatik di belakang tabir.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-icon">🤖</div>
+                    <div class="faq-content">
+                        <h3>Automasi Berasaskan Antara Muka (UI Automation)</h3>
+                        <p>Apa yang aplikasi ini lakukan adalah semata-mata meniru tingkah laku manusia. Ia mencari kotak teks (textbox), memasukkan teks yang dijana dari AI, dan menekan butang (seperti "Simpan RPH"). Kod JavaScript yang kita 'inject' (suntik) hanyalah berjalan secara lokal di komputer (RAM) pengguna untuk mengisi borang dengan pantas. Ia sama sekali tidak disuntik ke dalam pelayan (server) utama ASIE.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-icon">🔒</div>
+                    <div class="faq-content">
+                        <h3>Kerahsiaan & Keselamatan Data Terjamin</h3>
+                        <p>Aplikasi ini tidak memintas sebarang lapisan keselamatan (security bypass). Guru masih diwajibkan log masuk menggunakan ID dan kata laluan sah mereka. Aplikasi ini juga hanya boleh mengakses data dan kelas yang memang dikhaskan untuk guru tersebut sahaja, dan tidak mempunyai keupayaan untuk menceroboh data guru lain mahupun sistem pentadbir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="muat-turun" class="download-section reveal">
+        <div class="download-container glass-card">
+            <h2 class="antique-title">Muat Turun <span class="highlight">Sekarang</span></h2>
+            <p class="download-desc">Pilih versi yang sesuai dengan sistem operasi komputer anda. Aplikasi ini menyokong Windows dan macOS.</p>
+            
+            <div class="download-buttons">
+                <a href="#" class="btn-download btn-windows">
+                    <div class="btn-icon">
+                        <svg viewBox="0 0 448 512" width="32" height="32" fill="currentColor">
+                          <path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/>
+                        </svg>
+                    </div>
+                    <div class="btn-text-group">
+                        <span class="btn-title">Windows</span>
+                        <span class="btn-sub">.exe (64-bit)</span>
+                    </div>
+                </a>
+                
+                <a href="#" class="btn-download btn-mac">
+                    <div class="btn-icon">
+                        <svg viewBox="0 0 384 512" width="32" height="32" fill="currentColor">
+                          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                        </svg>
+                    </div>
+                    <div class="btn-text-group">
+                        <span class="btn-title">macOS (Intel)</span>
+                        <span class="btn-sub">.dmg (Mac lama)</span>
+                    </div>
+                </a>
+                
+                <a href="#" class="btn-download btn-mac">
+                    <div class="btn-icon">
+                        <svg viewBox="0 0 384 512" width="32" height="32" fill="currentColor">
+                          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                        </svg>
+                    </div>
+                    <div class="btn-text-group">
+                        <span class="btn-title">macOS (Silicon)</span>
+                        <span class="btn-sub">.dmg (M1/M2/M3)</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="dapatkan-sekarang" class="cta-section reveal">
+        <div class="cta-card glass-card">
+            <h2>Bersedia Untuk Merevolusi Masa Mengajar Anda?</h2>
+            <p>Jadilah antara guru elit yang menikmati kelebihan CIDS Suites Pro. Kurangkan stres, lebihkan fokus pada anak murid.</p>
+            <div class="cta-buttons">
+                <a href="https://t.me/halimroslan" target="_blank" class="btn-primary large">
+                    Hubungi di Telegram
+                </a>
+                <a href="https://tiktok.com/@halim_roslan" target="_blank" class="btn-secondary large">
+                    Lihat di TikTok
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/CIDS-NEW-GEN ICON.png" alt="CIDS Logo" class="footer-img">
+                <span>CIDS Suites Pro</span>
+            </div>
+            <p>&copy; 2026 Hakcipta Terpelihara. Bukan produk rasmi ASIE Model.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=4"></script>
+</body>
+</html>
