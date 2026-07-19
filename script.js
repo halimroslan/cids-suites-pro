@@ -47,11 +47,51 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 }, 150);
-                
                 // Update active state
                 mockupBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
             });
         });
     }
+
+    // Countdown Timer Logic
+    const targetDate = new Date('2026-08-01T08:00:00+08:00').getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const countdownContainer = document.getElementById('countdown-container');
+        const downloadLinksContainer = document.getElementById('download-links-container');
+
+        if (!countdownContainer || !downloadLinksContainer) return;
+
+        if (distance < 0) {
+            // Time's up! Show the download links
+            countdownContainer.style.display = 'none';
+            downloadLinksContainer.style.display = 'flex';
+            return;
+        }
+
+        // Calculate time left
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Update DOM
+        const cdDays = document.getElementById('cd-days');
+        const cdHours = document.getElementById('cd-hours');
+        const cdMinutes = document.getElementById('cd-minutes');
+        const cdSeconds = document.getElementById('cd-seconds');
+        
+        if (cdDays) cdDays.textContent = days.toString().padStart(2, '0');
+        if (cdHours) cdHours.textContent = hours.toString().padStart(2, '0');
+        if (cdMinutes) cdMinutes.textContent = minutes.toString().padStart(2, '0');
+        if (cdSeconds) cdSeconds.textContent = seconds.toString().padStart(2, '0');
+    }
+
+    // Run initially and then every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 });
