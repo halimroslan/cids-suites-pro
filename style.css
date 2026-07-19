@@ -193,7 +193,7 @@ body {
 }
 
 /* Buttons */
-.btn-primary-small, .btn-primary, .btn-secondary {
+.btn-primary-small, .btn-primary, .btn-secondary, .btn-youtube {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -233,7 +233,18 @@ body {
     transform: translateY(-2px);
 }
 
-.btn-primary.large, .btn-secondary.large {
+.btn-youtube {
+    background: #FF0000;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+}
+
+.btn-youtube:hover {
+    background: #e60000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+}
+
+.btn-primary.large, .btn-secondary.large, .btn-youtube.large {
     padding: 1rem 2rem;
     font-size: 1.1rem;
 }
