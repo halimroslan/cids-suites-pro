@@ -94,4 +94,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run initially and then every second
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    // --- Tutorial Onboarding Logic ---
+    const tutorialWrapper = document.getElementById('tutorialWrapper');
+    const btnTontonTutorial = document.getElementById('btn-tonton-tutorial');
+    const btnTutorialSudah = document.getElementById('btn-tutorial-sudah');
+
+    // Check if user has already watched the tutorial
+    const hasWatchedTutorial = localStorage.getItem('tutorialWatched') === 'true';
+
+    if (!hasWatchedTutorial) {
+        // Activate tutorial mode
+        document.body.classList.add('tutorial-active');
+        if (tutorialWrapper) {
+            tutorialWrapper.classList.add('highlight');
+        }
+    }
+
+    const closeTutorial = () => {
+        localStorage.setItem('tutorialWatched', 'true');
+        document.body.classList.remove('tutorial-active');
+        if (tutorialWrapper) {
+            tutorialWrapper.classList.remove('highlight');
+        }
+    };
+
+    if (btnTontonTutorial) {
+        btnTontonTutorial.addEventListener('click', () => {
+            closeTutorial();
+            // Allow default behavior (e.g. opening link) if href is set
+        });
+    }
+
+    if (btnTutorialSudah) {
+        btnTutorialSudah.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeTutorial();
+        });
+    }
 });

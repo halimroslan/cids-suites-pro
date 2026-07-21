@@ -835,3 +835,107 @@ footer p {
         font-size: 0.7rem;
     }
 }
+
+/* Tutorial Onboarding Styles */
+body.tutorial-active {
+    overflow: hidden !important; touch-action: none !important;
+}
+
+#tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+body.tutorial-active #tutorial-overlay {
+    display: block;
+    opacity: 1;
+}
+
+.tutorial-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.tutorial-wrapper.highlight {
+    z-index: 9999;
+}
+
+.tutorial-wrapper.highlight .btn-youtube {
+    position: relative;
+    animation: pulse-highlight 2s infinite;
+    pointer-events: auto;
+}
+
+@keyframes pulse-highlight {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+#tutorial-tooltip {
+    position: absolute;
+    top: calc(100% + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: #1f2937;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    z-index: 9999;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#tutorial-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 8px 8px 8px;
+    border-style: solid;
+    border-color: transparent transparent #ffffff transparent;
+}
+
+.tutorial-wrapper.highlight #tutorial-tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 5px);
+}
+
+.btn-sudah {
+    background: transparent;
+    border: 1px solid #d1d5db;
+    color: #6b7280;
+    border-radius: 20px;
+    padding: 6px 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.btn-sudah:hover {
+    background: #f3f4f6;
+    color: #374151;
+    border-color: #9ca3af;
+}
