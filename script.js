@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cloneWrapper.style.margin = '0';
         
         document.body.appendChild(cloneWrapper);
-        cloneWrapper.classList.add('highlight');
+        cloneWrapper.classList.add('tutorial-highlight');
         
         // Add events to the clone
         const cloneBtnTonton = cloneWrapper.querySelector('#btn-tonton-tutorial');
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('tutorialWatched', 'true');
         document.body.classList.remove('tutorial-active');
         if (tutorialWrapper) {
-            tutorialWrapper.classList.remove('highlight');
+            tutorialWrapper.classList.remove('tutorial-highlight');
         }
     };
 

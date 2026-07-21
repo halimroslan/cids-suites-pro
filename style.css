@@ -869,7 +869,7 @@ body.tutorial-active #tutorial-overlay {
     z-index: 9999;
 }
 
-.tutorial-wrapper.highlight .btn-youtube {
+.tutorial-wrapper.tutorial-highlight .btn-youtube {
     position: relative;
     animation: pulse-highlight 2s infinite;
     pointer-events: auto;
@@ -915,7 +915,7 @@ body.tutorial-active #tutorial-overlay {
     border-color: transparent transparent #ffffff transparent;
 }
 
-.tutorial-wrapper.highlight #tutorial-tooltip {
+.tutorial-wrapper.tutorial-highlight #tutorial-tooltip {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, 5px);
