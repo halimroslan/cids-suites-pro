@@ -99,30 +99,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const tutorialWrapper = document.getElementById('tutorialWrapper');
     const btnTontonTutorial = document.getElementById('btn-tonton-tutorial');
     const btnTutorialSudah = document.getElementById('btn-tutorial-sudah');
+    const titleElement = document.querySelector('.hero-content .antique-title');
+    const descElement = document.querySelector('.hero-content .hero-desc');
 
     const hasWatchedTutorial = localStorage.getItem('tutorialWatched') === 'true';
 
     let cloneWrapper = null;
+    let cloneTitle = null;
+    let cloneDesc = null;
 
     if (!hasWatchedTutorial && tutorialWrapper) {
         document.body.classList.add('tutorial-active');
         
-        // Clone the wrapper to put it above the overlay safely
-        cloneWrapper = tutorialWrapper.cloneNode(true);
-        cloneWrapper.id = "tutorialWrapperClone";
+        // Helper to clone and position elements over overlay
+        const cloneAndPosition = (el, extraClass = '') => {
+            if (!el) return null;
+            const clone = el.cloneNode(true);
+            clone.id = clone.id ? clone.id + "Clone" : "";
+            const rect = el.getBoundingClientRect();
+            clone.style.position = 'fixed';
+            clone.style.top = rect.top + 'px';
+            clone.style.left = rect.left + 'px';
+            clone.style.width = rect.width + 'px';
+            clone.style.height = rect.height + 'px';
+            clone.style.zIndex = '10000';
+            clone.style.margin = '0';
+            clone.style.pointerEvents = 'none';
+            clone.style.textAlign = 'center'; // so we can't click the text and mess up things
+            
+            // if it's the wrapper, we need pointer events
+            if (extraClass) {
+                clone.classList.add(extraClass);
+                clone.style.pointerEvents = 'auto';
+            }
+            
+            document.body.appendChild(clone);
+            return clone;
+        };
+
+        cloneTitle = cloneAndPosition(titleElement);
+        cloneDesc = cloneAndPosition(descElement);
+        cloneWrapper = cloneAndPosition(tutorialWrapper, 'tutorial-highlight');
         
-        // Position it exactly over the original
-        const rect = tutorialWrapper.getBoundingClientRect();
-        cloneWrapper.style.position = 'fixed';
-        cloneWrapper.style.top = rect.top + 'px';
-        cloneWrapper.style.left = rect.left + 'px';
-        cloneWrapper.style.zIndex = '10000';
-        cloneWrapper.style.margin = '0';
-        
-        document.body.appendChild(cloneWrapper);
-        cloneWrapper.classList.add('tutorial-highlight');
-        
-        // Add events to the clone
+        // Add events to the clone wrapper
         const cloneBtnTonton = cloneWrapper.querySelector('#btn-tonton-tutorial');
         const cloneBtnSudah = cloneWrapper.querySelector('#btn-tutorial-sudah');
         
@@ -130,6 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('tutorialWatched', 'true');
             document.body.classList.remove('tutorial-active');
             if (cloneWrapper) cloneWrapper.remove();
+            if (cloneTitle) cloneTitle.remove();
+            if (cloneDesc) cloneDesc.remove();
         };
 
         if (cloneBtnTonton) {
@@ -147,10 +168,28 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Handle resize to keep position accurate
         window.addEventListener('resize', () => {
-            if (document.body.classList.contains('tutorial-active') && cloneWrapper) {
-                const newRect = tutorialWrapper.getBoundingClientRect();
-                cloneWrapper.style.top = newRect.top + 'px';
-                cloneWrapper.style.left = newRect.left + 'px';
+            if (document.body.classList.contains('tutorial-active')) {
+                if (cloneWrapper && tutorialWrapper) {
+                    const rect = tutorialWrapper.getBoundingClientRect();
+                    cloneWrapper.style.top = rect.top + 'px';
+                    cloneWrapper.style.left = rect.left + 'px';
+                    cloneWrapper.style.width = rect.width + 'px';
+                    cloneWrapper.style.height = rect.height + 'px';
+                }
+                if (cloneTitle && titleElement) {
+                    const rect = titleElement.getBoundingClientRect();
+                    cloneTitle.style.top = rect.top + 'px';
+                    cloneTitle.style.left = rect.left + 'px';
+                    cloneTitle.style.width = rect.width + 'px';
+                    cloneTitle.style.height = rect.height + 'px';
+                }
+                if (cloneDesc && descElement) {
+                    const rect = descElement.getBoundingClientRect();
+                    cloneDesc.style.top = rect.top + 'px';
+                    cloneDesc.style.left = rect.left + 'px';
+                    cloneDesc.style.width = rect.width + 'px';
+                    cloneDesc.style.height = rect.height + 'px';
+                }
             }
         });
     }
