@@ -100,18 +100,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnTontonTutorial = document.getElementById('btn-tonton-tutorial');
     const btnTutorialSudah = document.getElementById('btn-tutorial-sudah');
 
-    // Check if user has already watched the tutorial
     const hasWatchedTutorial = localStorage.getItem('tutorialWatched') === 'true';
 
-    if (!hasWatchedTutorial) {
-        // Activate tutorial mode
+    let cloneWrapper = null;
+
+    if (!hasWatchedTutorial && tutorialWrapper) {
         document.body.classList.add('tutorial-active');
-        if (tutorialWrapper) {
-            tutorialWrapper.classList.add('highlight');
+        
+        // Clone the wrapper to put it above the overlay safely
+        cloneWrapper = tutorialWrapper.cloneNode(true);
+        cloneWrapper.id = "tutorialWrapperClone";
+        
+        // Position it exactly over the original
+        const rect = tutorialWrapper.getBoundingClientRect();
+        cloneWrapper.style.position = 'fixed';
+        cloneWrapper.style.top = rect.top + 'px';
+        cloneWrapper.style.left = rect.left + 'px';
+        cloneWrapper.style.zIndex = '10000';
+        cloneWrapper.style.margin = '0';
+        
+        document.body.appendChild(cloneWrapper);
+        cloneWrapper.classList.add('highlight');
+        
+        // Add events to the clone
+        const cloneBtnTonton = cloneWrapper.querySelector('#btn-tonton-tutorial');
+        const cloneBtnSudah = cloneWrapper.querySelector('#btn-tutorial-sudah');
+        
+        const closeTutorial = () => {
+            localStorage.setItem('tutorialWatched', 'true');
+            document.body.classList.remove('tutorial-active');
+            if (cloneWrapper) cloneWrapper.remove();
+        };
+
+        if (cloneBtnTonton) {
+            cloneBtnTonton.addEventListener('click', (e) => {
+                closeTutorial();
+            });
         }
+
+        if (cloneBtnSudah) {
+            cloneBtnSudah.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeTutorial();
+            });
+        }
+        
+        // Handle resize to keep position accurate
+        window.addEventListener('resize', () => {
+            if (document.body.classList.contains('tutorial-active') && cloneWrapper) {
+                const newRect = tutorialWrapper.getBoundingClientRect();
+                cloneWrapper.style.top = newRect.top + 'px';
+                cloneWrapper.style.left = newRect.left + 'px';
+            }
+        });
     }
 
-    const closeTutorial = () => {
+    // Still keep original events in case it's clicked normally
+    const closeTutorialNormal = () => {
         localStorage.setItem('tutorialWatched', 'true');
         document.body.classList.remove('tutorial-active');
         if (tutorialWrapper) {
@@ -121,15 +166,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnTontonTutorial) {
         btnTontonTutorial.addEventListener('click', () => {
-            closeTutorial();
-            // Allow default behavior (e.g. opening link) if href is set
+            closeTutorialNormal();
         });
     }
 
     if (btnTutorialSudah) {
         btnTutorialSudah.addEventListener('click', (e) => {
             e.preventDefault();
-            closeTutorial();
+            closeTutorialNormal();
         });
     }
 });
