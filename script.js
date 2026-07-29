@@ -216,3 +216,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Function to copy terminal code in macOS guide
+function copyTerminalCode() {
+    const codeText = document.getElementById('terminalCode').innerText;
+    navigator.clipboard.writeText(codeText).then(() => {
+        alert('Arahan telah disalin. Sila tampal (paste) ke dalam Terminal.\nPastikan anda menampal tepat seperti yang disalin tanpa menambah " " tambahan.');
+    }).catch(err => {
+        console.error('Gagal menyalin:', err);
+        alert('Gagal menyalin arahan. Sila salin secara manual.');
+    });
+}
