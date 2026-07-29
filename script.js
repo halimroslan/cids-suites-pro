@@ -1,24 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Reveal Animations
+    // Reveal Animations using IntersectionObserver for better scroll performance
     const reveals = document.querySelectorAll('.reveal, .reveal-right');
 
-    const revealOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        const elementVisible = 100;
-
-        reveals.forEach((reveal) => {
-            const elementTop = reveal.getBoundingClientRect().top;
-
-            if (elementTop < windowHeight - elementVisible) {
-                reveal.classList.add('active');
-            }
-        });
+    const revealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
     };
 
-    window.addEventListener('scroll', revealOnScroll);
-    
-    // Trigger once on load
-    revealOnScroll();
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            } else {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Optional: stop observing once revealed
+            }
+        });
+    }, revealOptions);
+
+    reveals.forEach((reveal) => {
+        revealOnScroll.observe(reveal);
+    });
 
     // Interactive Mockup Logic
     const mockupImg = document.getElementById('mockupImage');
@@ -221,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function copyTerminalCode() {
     const codeText = document.getElementById('terminalCode').innerText;
     navigator.clipboard.writeText(codeText).then(() => {
-        alert('Arahan telah disalin. Sila tampal (paste) ke dalam Terminal.\nPastikan anda menampal tepat seperti yang disalin tanpa menambah " " tambahan.');
+        alert('Arahan telah disalin. Sila tampal (paste) terus ke dalam Terminal.');
     }).catch(err => {
         console.error('Gagal menyalin:', err);
         alert('Gagal menyalin arahan. Sila salin secara manual.');
