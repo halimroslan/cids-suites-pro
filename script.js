@@ -22,6 +22,35 @@ document.addEventListener('DOMContentLoaded', () => {
         revealOnScroll.observe(reveal);
     });
 
+    // Number Counter Animation for Stats
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const animateValue = (obj, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    };
+
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                animateValue(entry.target, 0, target, 2000);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, revealOptions);
+
+    statNumbers.forEach(stat => {
+        statsObserver.observe(stat);
+    });
+
     // Interactive Mockup Logic
     const mockupImg = document.getElementById('mockupImage');
     const mockupBtns = document.querySelectorAll('.mockup-btn');
