@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const statVisitorsEl = document.getElementById('stat-visitors');
     
     // Base numbers to offset the counter API
-    const baseDownloads = 1542;
-    const baseVisitors = 5821;
+    const baseDownloads = 5;
+    const baseVisitors = 100;
 
     const animateValue = (obj, start, end, duration) => {
         let startTimestamp = null;
