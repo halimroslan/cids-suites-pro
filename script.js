@@ -22,8 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
         revealOnScroll.observe(reveal);
     });
 
-    // Number Counter Animation for Stats
-    const statNumbers = document.querySelectorAll('.stat-number');
+    // Live Stats Integration (CounterAPI) & Animation
+    const statDownloadsEl = document.getElementById('stat-downloads');
+    const statVisitorsEl = document.getElementById('stat-visitors');
+    
+    // Base numbers to offset the counter API
+    const baseDownloads = 1542;
+    const baseVisitors = 5821;
+
     const animateValue = (obj, start, end, duration) => {
         let startTimestamp = null;
         const step = (timestamp) => {
@@ -37,18 +43,53 @@ document.addEventListener('DOMContentLoaded', () => {
         window.requestAnimationFrame(step);
     };
 
-    const statsObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = parseInt(entry.target.getAttribute('data-target'));
-                animateValue(entry.target, 0, target, 2000);
-                observer.unobserve(entry.target);
+    let hasFetchedStats = false;
+
+    const statsObserver = new IntersectionObserver(async (entries, observer) => {
+        const statsSection = entries.find(e => e.isIntersecting);
+        if (statsSection && !hasFetchedStats) {
+            hasFetchedStats = true;
+            
+            let finalVisitors = baseVisitors;
+            let finalDownloads = baseDownloads;
+
+            try {
+                // Fetch visitor count (this also increments it)
+                const visitorRes = await fetch('https://api.counterapi.dev/v1/cids-suites-pro-web/visitor/up');
+                if (visitorRes.ok) {
+                    const vData = await visitorRes.json();
+                    finalVisitors = baseVisitors + vData.count;
+                }
+                
+                // Fetch download count (read-only for now)
+                const downloadRes = await fetch('https://api.counterapi.dev/v1/cids-suites-pro-web/downloads/');
+                if (downloadRes.ok) {
+                    const dData = await downloadRes.json();
+                    finalDownloads = baseDownloads + dData.count;
+                }
+            } catch (e) {
+                console.error("Failed to fetch live stats", e);
             }
-        });
+
+            if (statDownloadsEl) animateValue(statDownloadsEl, 0, finalDownloads, 2000);
+            if (statVisitorsEl) animateValue(statVisitorsEl, 0, finalVisitors, 2000);
+            
+            observer.disconnect();
+        }
     }, revealOptions);
 
-    statNumbers.forEach(stat => {
-        statsObserver.observe(stat);
+    const statsContainer = document.querySelector('.stats-container');
+    if (statsContainer) {
+        statsObserver.observe(statsContainer);
+    }
+
+    // Track download clicks
+    const downloadButtons = document.querySelectorAll('.btn-download');
+    downloadButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Trigger API increment asynchronously (fire and forget)
+            fetch('https://api.counterapi.dev/v1/cids-suites-pro-web/downloads/up').catch(e => console.error(e));
+        });
     });
 
     // Interactive Mockup Logic
